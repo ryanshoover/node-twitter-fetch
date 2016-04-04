@@ -1,6 +1,6 @@
 var express    = require("express");
 var bodyParser = require("body-parser");
-var request    = require('request');
+var request    = require('then-request');
 var app        = express();
 
 var base64     = require('./lib/base64.js');
@@ -24,9 +24,12 @@ app.get('/', function(req, res) {
 });
 
 // Handle a submitted post
-app.post('/search', function(req,res){
-	var result = twitter.search.search(req.body.query);
-	res.render('pages/index', { tweets: result, query: req.body.query })
+app.post('/', function(req,res){
+	twitter.api.search(req.body.query, res, 'render');
+});
+
+app.post('/download', function(req,res){
+	twitter.api.search(req.body.query, res, 'download');
 });
 
 // Start listening

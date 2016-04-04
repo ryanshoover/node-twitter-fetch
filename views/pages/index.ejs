@@ -4,7 +4,7 @@ if ( 'undefined' === typeof query ) {
 }
 
 if ( 'undefined' === typeof tweets ) {
-  tweets = '';
+  tweets = [];
 }
 
 %>
@@ -12,10 +12,6 @@ if ( 'undefined' === typeof tweets ) {
 <html>
 <head>
   <% include ../partials/header.ejs %>
-
-<script>
-var tweets = <%= tweets %>;
-</script>
 </head>
 
 <body>
@@ -28,7 +24,6 @@ var tweets = <%= tweets %>;
       <img src="/wpe-logo.png">
     </a>
     <h1>Fetch Twitter Data</h1>
-    <p><%= tweets %></p>
     <p>Search through Twitter records and download a CSV of all of your tweets for sentiment analysis.</p>
   </div>
 </div>
@@ -42,7 +37,7 @@ var tweets = <%= tweets %>;
     </div>
     <div class="col-md-8">
       <h3><span class="glyphicon glyphicon-cloud-download"></span> Get Tweets</h3>
-      <form action="/search" method="post" name="twitter-query">
+      <form action="/" method="post" name="twitter-query">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="query">Search Query</label>
@@ -55,6 +50,22 @@ var tweets = <%= tweets %>;
         </div>
       </div>
     </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1 results">
+      <ul>
+        <% for( var i=0; i < tweets.length; i++ ) { %>
+          <li>
+            <%- include('../partials/tweet.ejs', {tweet: tweets[i]}) -%>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+      <% if ( 0 < query.length ) { %>
+        <%- include('../partials/download-tweets.ejs', {query: query}); -%>
+      <% } %>
     </div>
   </div>
 </div>
