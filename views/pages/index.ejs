@@ -30,13 +30,13 @@ if ( 'undefined' === typeof tweets ) {
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> How this tool works</h3>
+      <h2><span class="glyphicon glyphicon-info-sign"></span> How this tool works</h2>
       <ul>
         <li>Help to come...</li>
       </ul>
     </div>
     <div class="col-md-8">
-      <h3><span class="glyphicon glyphicon-cloud-download"></span> Get Tweets</h3>
+      <h2><span class="glyphicon glyphicon-cloud-download"></span> Get Tweets</h2>
       <form action="/" method="post" name="twitter-query">
       <div class="row">
         <div class="col-sm-5 form-group">
@@ -52,8 +52,10 @@ if ( 'undefined' === typeof tweets ) {
     </form>
     </div>
   </div>
+  <% if ( 0 < query.length ) { %>
   <div class="row">
     <div class="col-md-8 col-md-offset-1 results">
+      <h2>Results for "<%= query %>"</h2>
       <ul>
         <% for( var i=0; i < tweets.length; i++ ) { %>
           <li>
@@ -63,11 +65,10 @@ if ( 'undefined' === typeof tweets ) {
       </ul>
     </div>
     <div class="col-md-2 col-md-offset-1">
-      <% if ( 0 < query.length ) { %>
         <%- include('../partials/download-tweets.ejs', {query: query}); -%>
-      <% } %>
     </div>
   </div>
+  <% } %>
 </div>
 
 </body>

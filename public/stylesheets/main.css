@@ -18,3 +18,9 @@
     padding: 30px;
     background: white;
     }
+
+.results ul {
+  padding-left: 0; }
+  .results li {
+    margin-bottom: 1em;
+    list-style-type: none; }
