@@ -25,11 +25,11 @@ app.get('/', function(req, res) {
 
 // Handle a submitted post
 app.post('/', function(req,res){
-	twitter.api.search(req.body.query, res, 'render');
+	twitter.api.search(req.body, res, 'render');
 });
 
 app.post('/download', function(req,res){
-	twitter.api.search(req.body.query, res, 'download');
+	twitter.api.search(req.body, res, 'download');
 });
 
 // Start listening

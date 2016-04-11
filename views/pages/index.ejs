@@ -37,25 +37,16 @@ if ( 'undefined' === typeof tweets ) {
     </div>
     <div class="col-md-8">
       <h2><span class="glyphicon glyphicon-cloud-download"></span> Get Tweets</h2>
-      <form action="/" method="post" name="twitter-query">
-      <div class="row">
-        <div class="col-sm-5 form-group">
-          <label for="query">Search Query</label>
-          <input type="text" name="query" class="form-control" value="<%= query %>">
-          <p class="help-block"><a href="https://support.twitter.com/articles/71577">Enter a standard Twitter search query</a></p>
-        </div>
-
-        <div class="col-sm-4 col-sm-offset-2 form-group">
-          <input type="submit" class="btn btn-lg btn-primary btn-block">
-        </div>
-      </div>
-    </form>
+      <%- include('../partials/search-form.ejs', {query: query}) -%>
     </div>
   </div>
   <% if ( 0 < query.length ) { %>
   <div class="row">
     <div class="col-md-8 col-md-offset-1 results">
       <h2>Results for "<%= query %>"</h2>
+      <% if ( 0 === tweets.length ) { %>
+      <p>There were no tweets that match your query. Try a different search?</p>
+      <% } %>
       <ul>
         <% for( var i=0; i < tweets.length; i++ ) { %>
           <li>

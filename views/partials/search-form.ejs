@@ -1,0 +1,27 @@
+<form action="/" method="post" name="twitter-query">
+    <div class="row">
+        <div class="col-sm-5 form-group">
+            <label for="query">
+                Search Query
+            </label>
+            <input type="text" name="query" class="form-control" value="<%= query %>">
+            <p class="help-block">
+                <a href="https://support.twitter.com/articles/71577">
+                    Enter a standard Twitter search query
+                </a>
+            </p>
+            <div class="input-group date" data-provide="datepicker">
+                <label for="startDate">Start Date</label>
+                <input name="startDate" type="date" class="form-control" placeholder="01/01/2016">
+            </div>
+            <div class="input-group date" data-provide="datepicker">
+                <label for="endDate">End Date</label>
+                <input name="endDate" type="date" class="form-control" placeholder="01/31/2016">
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-offset-2 form-group">
+            <input type="submit" class="btn btn-lg btn-primary btn-block"/>
+        </div>
+    </div>
+</form>
